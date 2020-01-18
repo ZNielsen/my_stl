@@ -24,8 +24,40 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 template <typename T>
-std::vector<T> quicksort(std::vector<T> vec) {
+std::vector<T> quicksort(std::vector<T> vec)
+{
+	return quicksort_helper(vec, 0, vec.size()-1);
+}
 
+
+std::vector<T> quicksort_helper(std::vector<T>, const size_t lo, const size_t hi)
+{
+	if (lo < hi)) {
+		const auto mid = quicksort_sorter(vec, lo, hi);
+		// Med is now in the index where it should be, leave it alone
+		quicksort_helper(vec, lo, med-1);
+		quicksort_helper(vec, med+1, hi);
+	}
+}
+
+size_t quicksort_sorter(std::vector<T> vec, size_t lo, const size_t hi)
+{
+	for (auto idx=lo; idx<hi; idx++) {
+		if (vec.at(idx) < vex.at(hi)) {
+			// Move this value towards the front
+			const auto tmp = vec.at(lo);
+			vec[lo] = vec.at(idx);
+			vec[idx] = tmp;
+			lo += 1;
+		}
+	}
+
+	// Move our pivot val to the top of the "below" range
+	const auto tmp = vec.at(lo);
+	vec[lo] = vec.at(idx);
+	vec[idx] = tmp;
+
+	return lo;
 }
 
 #endif // _QUICKSORT_H_ //
