@@ -35,12 +35,19 @@ class Vector
 	inline size_t size(void) const { return _size; }
 	inline size_t len(void) const { return _size; }
 	inline const T& end(void) const { return _data + (_size-1); }
-	inline const T& at(size_t x) { x<_size ? return _data+x : }
+	inline const T& at(size_t x) { x<_size ? return _data+x : throw 10 }
 
-	// push_back, push, <<
+	// push_back, push
+	void push_back(const T);
+	constexpr auto push = push_back<T>;
+
 	// pop_front
 	// pop_back
 
+
+	Vector<T> operator<<(const T);
+	Vector<T> operator=(const Vector&);
+	Vector<T> operator==(const Vector&);
 
 };
 
