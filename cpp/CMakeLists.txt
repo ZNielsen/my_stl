@@ -22,14 +22,14 @@ target_compile_options(unit_tests PRIVATE
     -Wcast-align
     -Wstrict-prototypes
     -Wwrite-strings
-    -Waggrigate-return
+    -Waggregate-return
     -Wswitch-default
     -Wswitch-enum
     -Wconversion
     -Wunreachable-code
     -Winit-self
     -O2
-
+    )
 
 # Declare libraries that are used
 add_library(gtest STATIC IMPORTED)
