@@ -15,6 +15,7 @@ as a way to keep my Rust syntax from getting too rusty (ha!)
   - Correctness
   - Memory Safety
   - Speed vs actual standard library
+- Look into CMake multiple targets
 
 ## TO-DONE!
 - Decide on a build framework

@@ -12,6 +12,25 @@ add_executable(unit_tests
     main.cpp
 )
 
+target_compile_options(unit_tests PRIVATE
+    -Werror
+    -Wextra
+    -Wall
+    -Wfloat-equal
+    -Wundef
+    -Wpointer-arith
+    -Wcast-align
+    -Wstrict-prototypes
+    -Wwrite-strings
+    -Waggrigate-return
+    -Wswitch-default
+    -Wswitch-enum
+    -Wconversion
+    -Wunreachable-code
+    -Winit-self
+    -O2
+
+
 # Declare libraries that are used
 add_library(gtest STATIC IMPORTED)
 
