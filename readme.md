@@ -1,7 +1,11 @@
 # My STL
 
 My stl is a practice library for me to implement data structures and algorithms.
-This is just light practice for me in my spare time, so I'm not concerned with having these algorithms be the most efficient they can possibly be.
+This is just light practice for me in my spare time, so I'm not concerned with
+having these algorithms be the most efficient they can possibly be.
+
+The Rust portion will probably focus more on the algorithms, and will function
+as a way to keep my Rust syntax from getting too rusty (ha!)
 
 
 ## TODO
