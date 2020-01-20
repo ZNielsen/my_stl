@@ -62,7 +62,7 @@ std::queue<T> mergesort_helper(std::vector<T> &v, const uint left, const uint ri
     	low.pop();
     }
     while (!high.empty()) {
-    	ret.push(high.top())[
+    	ret.push(high.top());
     	high.pop();
     }
     return ret;

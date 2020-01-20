@@ -10,6 +10,7 @@ add_executable(test.buildtest
 # Add the unit test executable
 add_executable(unit_tests
     main.cpp
+    sort_tests.cpp
 )
 
 target_compile_options(unit_tests PRIVATE
