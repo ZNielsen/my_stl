@@ -27,6 +27,14 @@ fn quicksort<T: PartialOrd>(vec: Vec) -> Vec<T> {
     return quicksort_helper(vec, 0, vec.len()-1);
 }
 
+fn quicksort_hepler<T: PartialOrd>(vec: Vec, lo: u128, hi: u128) -> Vec<T> {
+
+}
+
+fn quicksort_sorter<T: PartialOrd>(vec: Vec, lo: u128, hi: u128) -> u128 {
+
+}
+
 
 #[cfg(test)]
 mod tests {

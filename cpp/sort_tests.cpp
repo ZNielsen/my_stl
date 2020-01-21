@@ -16,6 +16,7 @@
 
 #include "mergesort.h"
 #include "quicksort.h"
+#include "data/sort_vectors.h"
 
 #include <vector>
 
@@ -25,45 +26,62 @@
 
 class Sort_Tests : public testing::Test
 {
-  private:
-    static constexpr uint NUM_TO_SORT {100000};
+  public:
+    static constexpr int NUM_TO_SORT {100};
+    static const char DATA_FILE[];
   protected:
     virtual void SetUp() override {
-        const auto generate_custom_data = false;
-        if (generate_custom_data) {
-            std::ofstream f;
-            f.open("./data/sort_vectors.h", std::ios::out | std::ios::trunc);
-            f << "#pragma once\n";
-
-            f << "std::vector<int> in_order_data = {\n";
-            for (auto num=-(NUM_TO_SORT/2); num<=(NUM_TO_SORT/2); num++) {
-                f << "\t" << num << ",\n";
-            }
-            f << "};\n";
-
-            f << "std::vector<int> backward_order_data = {\n";
-            for (auto num=(NUM_TO_SORT/2); num>=-(NUM_TO_SORT/2); num--) {
-                f << "\t" << num << ",\n";
-            }
-            f << "};\n";
-
-            std::srand (uint(std::time(NULL)));
-            f << "std::vector<int> random_data = {\n";
-            for (uint num=0; num<=NUM_TO_SORT; num++) {
-                f << "\t" << rand() << ",\n";
-            }
-            f << "};\n";
-
-            f.close();
-        }
     }
 
     virtual void TearDown() override {
     }
-  public:
+  private:
 };
+const char Sort_Tests::DATA_FILE[] = "../../data/sort_vectors.h";
+
+void generate_test_data(void)
+{
+    const auto generate_custom_data = true;
+    if (generate_custom_data) {
+        std::cout << "Generating new data" << std::endl;
+        std::ofstream f;
+        f.open(Sort_Tests::DATA_FILE, std::ios::out | std::ios::trunc);
+        f << "#pragma once\n";
+        f << "#include <vector>\n";
+
+        f << "std::vector<int> in_order_data = {\n\t";
+        for (int num=-(Sort_Tests::NUM_TO_SORT/2); num<=(Sort_Tests::NUM_TO_SORT/2); num++) {
+            f << num << ", ";
+            if (0 == num % 20) { f << "\n\t"; }
+        }
+        f << "0};\n";
+
+        f << "std::vector<int> backward_order_data = {\n\t";
+        for (int num=(Sort_Tests::NUM_TO_SORT/2); num >= -(Sort_Tests::NUM_TO_SORT/2); num--) {
+            f << num << ", ";
+            if (0 == num % 20) { f << "\n\t"; }
+        }
+        f << "0};\n";
+
+        std::srand (uint(std::time(NULL)));
+        f << "std::vector<int> random_data = {\n\t";
+        for (int num=0; num<=Sort_Tests::NUM_TO_SORT; num++) {
+            f << rand() << ", ";
+            if (0 == num % 20) { f << "\n\t"; }
+        }
+        f << "0};\n";
+
+        f.close();
+
+        std::cout << "Done generating data" << std::endl;
+    }
+}
 
 TEST(Sort_Tests, quicksort_Test)
 {
-    ASSERT_TRUE(true);
+    generate_test_data();
+    auto in = random_data;
+    auto exp = in_order_data;
+    quicksort(in);
+    EXPECT_EQ(in, exp);
 }
