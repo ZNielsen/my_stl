@@ -1,0 +1,13 @@
+buildconfig = "//build/config/BUILDCONFIG.gn"
+
+check_targets = [
+    "//*",
+]
+
+root = "//:root"
+
+default_args = {
+    # Default to release builds for this project.
+    is_debug = false
+    is_component_build = false
+}

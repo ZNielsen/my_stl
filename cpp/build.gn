@@ -1,0 +1,24 @@
+
+group("root") {
+    deps = [
+        ...,
+        "//:my_stl",
+    ]
+}
+
+executable("my_stl") {
+  sources = [
+    "main.cpp",
+    "sort_tests.cpp"
+  ]
+  deps = [
+    ":gtest",
+  ]
+}
+
+static_library("gtest") {
+  sources = [
+    "hello_static.cc",
+    "hello_static.h",
+  ]
+}
