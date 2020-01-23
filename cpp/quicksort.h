@@ -26,7 +26,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 template <typename T>
-size_t quicksort_sorter(std::vector<T> vec, size_t lo, const size_t hi)
+size_t quicksort_sorter(std::vector<T> &vec, size_t lo, const size_t hi)
 {
 	for (auto idx=lo; idx<hi; idx++) {
 		if (vec.at(idx) < vec.at(hi)) {
@@ -52,8 +52,8 @@ void quicksort_helper(std::vector<T> &vec, const size_t lo, const size_t hi)
 	if (lo < hi) {
 		const auto mid = quicksort_sorter(vec, lo, hi);
 		// Med is now in the index where it should be, leave it alone
-		quicksort_helper(vec, lo, mid-1);
-		quicksort_helper(vec, mid+1, hi);
+        if (mid > 0) { quicksort_helper(vec, lo, mid-1); }
+        if (mid < vec.size()) { quicksort_helper(vec, mid+1, hi);}
 	}
 }
 

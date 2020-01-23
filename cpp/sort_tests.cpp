@@ -24,6 +24,9 @@
 //  CODE
 ////////////////////////////////////////////////////////////////////////////////
 
+void generate_test_data(void);
+
+
 class Sort_Tests : public testing::Test
 {
   public:
@@ -39,9 +42,22 @@ class Sort_Tests : public testing::Test
 };
 const char Sort_Tests::DATA_FILE[] = "../../data/sort_vectors.h";
 
+TEST(Sort_Tests, quicksort_Test)
+{
+    // generate_test_data();
+    auto in = random_data;
+    auto exp = random_data;
+    quicksort(in);
+    std::sort(exp.begin(), exp.end());
+    EXPECT_EQ(in, exp);
+}
+
+
+
 void generate_test_data(void)
 {
     const auto generate_custom_data = true;
+    const auto mod_num {10};
     if (generate_custom_data) {
         std::cout << "Generating new data" << std::endl;
         std::ofstream f;
@@ -52,14 +68,14 @@ void generate_test_data(void)
         f << "std::vector<int> in_order_data = {\n\t";
         for (int num=-(Sort_Tests::NUM_TO_SORT/2); num<=(Sort_Tests::NUM_TO_SORT/2); num++) {
             f << num << ", ";
-            if (0 == num % 20) { f << "\n\t"; }
+            if (0 == num % mod_num) { f << "\n\t"; }
         }
         f << "0};\n";
 
         f << "std::vector<int> backward_order_data = {\n\t";
         for (int num=(Sort_Tests::NUM_TO_SORT/2); num >= -(Sort_Tests::NUM_TO_SORT/2); num--) {
             f << num << ", ";
-            if (0 == num % 20) { f << "\n\t"; }
+            if (0 == num % mod_num) { f << "\n\t"; }
         }
         f << "0};\n";
 
@@ -67,7 +83,7 @@ void generate_test_data(void)
         f << "std::vector<int> random_data = {\n\t";
         for (int num=0; num<=Sort_Tests::NUM_TO_SORT; num++) {
             f << rand() << ", ";
-            if (0 == num % 20) { f << "\n\t"; }
+            if (0 == num % mod_num) { f << "\n\t"; }
         }
         f << "0};\n";
 
@@ -75,13 +91,4 @@ void generate_test_data(void)
 
         std::cout << "Done generating data" << std::endl;
     }
-}
-
-TEST(Sort_Tests, quicksort_Test)
-{
-    generate_test_data();
-    auto in = random_data;
-    auto exp = in_order_data;
-    quicksort(in);
-    EXPECT_EQ(in, exp);
 }
