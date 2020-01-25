@@ -9,8 +9,14 @@ as a way to keep my Rust syntax from getting too rusty (ha!)
 
 
 ## TODO
-- Integrate google test framework to unit test implementations
-  - I think I'm done with this?  Need to make some real tests to be sure)
+- Data Structures
+  - Vector
+  - Queue
+  - Stack
+  - Binary Tree
+  - AVL Tree
+  - Heap + Heapsort Algorithm
+  - Linked List
 - Write Tests for completed + todo work
   - Correctness
   - Memory Safety
@@ -18,6 +24,7 @@ as a way to keep my Rust syntax from getting too rusty (ha!)
 - Look into gdb for practice
 
 ## TO-DONE!
+- ~~Integrate google test framework to unit test implementations~~
 - Decide on a build framework
   - ~~Hand done makefiles~~ - Done it before, want to try something new
   - ~~tup~~ - saw some talk that it was not as solid as initially advertised
