@@ -28,13 +28,14 @@
 
 template <typename T>
 std::queue<T> mergesort_helper(const std::vector<T> &v, const size_t left, const size_t right) {
-    auto ret = std::queue<T>{};
-    if (left == right) {
+    std::queue<T> ret {};
+    if (left >= right) {
         ret.push(v.at(left));
         return ret;
     }
-    auto low  = mergesort_helper<T>(v, left, (right-left)/2);
-    auto high = mergesort_helper<T>(v, ((right-left)/2)+1, right);
+    const size_t mid = (right+left)/2;
+    auto low  = mergesort_helper<T>(v, left, mid);
+    auto high = mergesort_helper<T>(v, mid+1, right);
     while (!low.empty() && !high.empty()) {
         if (low.front() <= high.front()) {
             ret.push(low.front());
