@@ -52,7 +52,15 @@ TEST(Sort_Tests, quicksort_Test)
     EXPECT_EQ(in, exp);
 }
 
-
+TEST(Sort_Tests, mergesort_Test)
+{
+    // generate_test_data();
+    auto in = random_data;
+    auto exp = random_data;
+    mergesort(in);
+    std::sort(exp.begin(), exp.end());
+    EXPECT_EQ(in, exp);
+}
 
 void generate_test_data(void)
 {

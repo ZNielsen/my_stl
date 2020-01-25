@@ -27,45 +27,46 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 template <typename T>
-std::vector<T> mergesort(const std::vector<T> vec) {
-	const auto s = mergesort_helper(vec, 0, vec.size()-1);
-	std::vector<T> ret{};
-	while (!s.empty()) {
-		ret.push_back(s.top());
-		s.pop();
-	}
-	return ret;
-}
-
-template <typename T>
-std::queue<T> mergesort_helper(std::vector<T> &v, const uint left, const uint right) {
-    if (left == right) {
-        return v.at(right);
-    }
-    auto low  = mergesort_helper(v, left, (right-left)/2);
-    auto high = mergesort_helper(v, ((right-left)/2)+1, right);
+std::queue<T> mergesort_helper(const std::vector<T> &v, const size_t left, const size_t right) {
     auto ret = std::queue<T>{};
+    if (left == right) {
+        ret.push(v.at(left));
+        return ret;
+    }
+    auto low  = mergesort_helper<T>(v, left, (right-left)/2);
+    auto high = mergesort_helper<T>(v, ((right-left)/2)+1, right);
     while (!low.empty() && !high.empty()) {
-        if (low.top() <= high.top()) {
-            ret.push(low.top());
+        if (low.front() <= high.front()) {
+            ret.push(low.front());
             low.pop();
         }
         else {
-            ret.push(high.top());
+            ret.push(high.front());
             high.pop();
         }
     }
 
     // Clean up if one is empty
     while (!low.empty()) {
-    	ret.push(low.top());
+    	ret.push(low.front());
     	low.pop();
     }
     while (!high.empty()) {
-    	ret.push(high.top());
+    	ret.push(high.front());
     	high.pop();
     }
     return ret;
+}
+
+template <typename T>
+std::vector<T> mergesort(const std::vector<T> &vec) {
+	std::queue<T> s {mergesort_helper<T>(vec, 0, vec.size()-1ul)};
+	std::vector<T> ret{};
+	while (!s.empty()) {
+		ret.push_back(s.front());
+		s.pop();
+	}
+	return ret;
 }
 
 #endif // _MERGESORT_H_ //
