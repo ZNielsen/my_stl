@@ -22,8 +22,14 @@ class Vector_Tests : public testing::Test
   protected:
     virtual void SetUp() override {
     }
-
     virtual void TearDown() override {
     }
   public:
 };
+
+TEST(Vector_Test, Push_Back_Test)
+{
+    // Keep pushing - should resize
+    //
+
+}
